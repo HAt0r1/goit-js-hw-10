@@ -47,11 +47,12 @@ class Timer {
     this.interval = setInterval(() => {
       const currentDate = Date.now();
       const subtraction = datePick - currentDate;
-      const convertDate = this.convertMs(subtraction);
-      if (convertDate <= 0) {
+      if (subtraction <= 0) {
         this.stopTimer();
+      } else {
+        const convertDate = this.convertMs(subtraction);
+        this.onTick(convertDate);
       }
-      this.onTick(convertDate);
     }, 1000);
     startButton.disabled = true;
     input.disabled = true;
